@@ -1,0 +1,163 @@
+<HTML>
+<HEAD>
+	<meta charset="UTF-8">
+	<title>Score Board</title>
+<SCRIPT>
+	let arr = new Array();
+	let people = 100;
+	
+	/////////////////////////////////////
+	//SETTING
+	function insert(){
+		let cnt = 1;
+		for(i = 0; i < people * 5; i = i+5){
+			arr[i] = cnt; // 학번
+			arr[i + 1] = '홍길' + cnt; // 이름
+			arr[i + 2] = Math.floor((Math.random() * 100) + 1); // 국어
+			arr[i + 3] = Math.floor((Math.random() * 100) + 1); // 영어
+			arr[i + 4] = Math.floor((Math.random() * 100) + 1); // 수학
+			cnt++;
+		}
+	}
+	//math.floor는 소수점을 버리는 함수
+	/////////////////////////////////////
+	//HEAD
+	function print_head(){
+		let d = new Date();
+		let year = d.getFullYear();
+		let month = d.getMonth();
+		let date = d.getDate();
+		let hour = d.getHours();
+		let min = d.getMinutes();
+		let sec = d.getSeconds();
+		document.write("<TABLE width = 600><TR><TH COLSPAN=5 BGCOLOR=SKYBLUE><CENTER>성적집계표</CENTER></TH></TR>");
+		document.write("<TR><TD BGCOLOR=SKYBLUE ALIGN = right>" + year + ".0" + (month+1) + "." + date +
+						" " + hour + ":" + min + ":" + sec + "</TD></TR></TABLE>");
+		//month는 전 달꺼로 나오기때문에 +1해줌
+	}
+	
+	/////////////////////////////////////
+	//BODY
+	function print_body(){
+		document.write(	"<TABLE width = 600><TR ALIGN = center><TD><LEFT>학번" +
+						"</CENTER></TD><TD><LEFT>이름" + 
+						"</LEFT></TD><TD>국어" + "</TD><TD>영어" + "</TD><TD>수학" + 
+						"</TD><TD>합계" + "</TD><TD>평균</TD></TR></TABLE>");
+		
+		let id_out = arr[0]; // 학번
+		let name_out = arr[1]; // 이름
+		let kor_out = arr[2];// 국어
+		let eng_out = arr[3];// 영어
+		let mat_out = arr[4];// 수학
+		
+		document.write(	"<TABLE width = 600><TR ALIGN = center><TD width = 82><CENTER>"+ id_out +
+						"</CENTER></TD><TD width = 82><CENTER>"+ name_out +
+						"</CENTER></TD><TD width = 82>"+ kor_out +
+						"</TD><TD width = 82>"+ eng_out +
+						"</TD><TD width = 82>"+ mat_out +
+						"</TD><TD width = 82>"+ (kor_out + eng_out + mat_out) +
+						"</TD><TD width = 82>"+ Math.floor(((kor_out + eng_out + mat_out)/3)) + "</TD></TR>");
+		
+		let cnt = 5;
+		for(i = 1; i < 30; i++){
+			let id = arr[cnt * i]; // 학번
+			let name = arr[cnt * i + 1]; // 이름
+			let kor = arr[cnt * i + 2];// 국어
+			let eng = arr[cnt * i + 3];// 영어
+			let mat = arr[cnt * i + 4];// 수학
+			
+			
+			document.write(	"<TR ALIGN = center><TD><CENTER>"+ id +
+							"</CENTER></TD><TD><CENTER>"+ name +
+							"</CENTER></TD><TD>"+ kor +
+							"</TD><TD>"+ eng +
+							"</TD><TD>"+ mat +
+							"</TD><TD>"+ (kor + eng + mat) +
+							"</TD><TD>"+ Math.floor(((kor + eng + mat)/3)) +
+							"</TD></TR>");
+					}
+		
+		document.write("</TABLE>");
+	}
+	
+	/////////////////////////////////////
+	//TAIL
+	function print_tail(){
+		let korSumPage = arr[2];
+		let engSumPage = arr[3];
+		let matSumPage = arr[4];
+		let sumSumPage = arr[2] + arr[3] + arr[4];
+		let avgSumPage = (arr[2] + arr[3] + arr[4])/3;
+		let korSumTotal = 0;
+		let engSumTotal = 0;
+		let matSumTotal = 0;
+		let sumSumTotal = 0;
+		let avgSumTotal = 0;
+		
+		//let cnt = 5;
+		for(i = 1; i < 30; i++){
+			korSumPage += arr[5 * i + 2];
+			engSumPage += arr[5 * i + 3];
+			matSumPage += arr[5 * i + 4];
+			sumSumPage += arr[5 * i + 2] + arr[5 * i + 3] + arr[5 * i + 4];
+			avgSumPage += (arr[5 * i + 2] + arr[5 * i + 3] + arr[5 * i + 4])/3;
+		}
+		//현재페이지
+		document.write(	"<TABLE width = 600><TR ALIGN = center><TD BGCOLOR=SKYBLUE colspan=2><CENTER>현재페이지합계"+
+						"</CENTER></TD><TD width = 82>"+ korSumPage +
+						"</TD><TD width = 82>"+ engSumPage +
+						"</TD><TD width = 82>"+ matSumPage +
+						"</TD><TD width = 82>"+ sumSumPage +
+						"</TD><TD width = 82>"+ Math.floor(avgSumPage) +
+						"</TD></TR>"+
+						"<TR ALIGN = center><TD BGCOLOR=SKYBLUE colspan = 2><CENTER>현재페이지평균"+
+						"</CENTER></TD><TD width = 82>"+ Math.floor(korSumPage/30) +
+						"</TD><TD width = 82>"+ Math.floor(engSumPage/30) +
+						"</TD><TD width = 82>"+ Math.floor(matSumPage/30) +
+						"</TD><TD width = 82>"+ Math.floor(sumSumPage/30) +
+						"</TD><TD width = 82>"+ Math.floor(avgSumPage/30) +
+						"</TD></TR></TABLE>");
+		
+		korSumTotal += korSumPage;
+		engSumTotal += engSumPage;
+		matSumTotal += matSumPage;
+		sumSumTotal += sumSumPage;
+		avgSumTotal += avgSumPage;
+		
+		korSumPage, engSumPage, matSumPage, sumSumPage, avgSumPage = 0; //초기화
+		//누적페이지	
+		document.write(	"<TABLE width = 600><TR ALIGN = center><TD BGCOLOR=SKYBLUE colspan=2><CENTER>누적페이지합계"+
+						"</CENTER></TD><TD width = 82>"+ korSumTotal +
+						"</TD><TD width = 82>"+ engSumTotal +
+						"</TD><TD width = 82>"+ matSumTotal +
+						"</TD><TD width = 82>"+ sumSumTotal +
+						"</TD><TD width = 82>"+ Math.floor(avgSumTotal) +
+						"</TD></TR>"+
+						"<TR ALIGN = center><TD BGCOLOR=SKYBLUE colspan = 2><CENTER>누적페이지평균"+
+						"</CENTER></TD><TD width = 82>"+ Math.floor(korSumTotal/30) +
+						"</TD><TD width = 82>"+ Math.floor(engSumTotal/30) +
+						"</TD><TD width = 82>"+ Math.floor(matSumTotal/30) +
+						"</TD><TD width = 82>"+ Math.floor(sumSumTotal/30) +
+						"</TD><TD width = 82>"+ Math.floor(avgSumTotal/30) +
+						"</TD></TR></TABLE>");
+	}
+	
+</SCRIPT>
+<Style>
+	table{
+		border-top-style : solid;
+		border-color : black;
+		border-width : 1px;
+		border-collapse : collapse;
+	}
+
+</Style>
+</HEAD>
+
+<BODY>
+<SCRIPT>insert();</SCRIPT>
+<SCRIPT>print_head();</SCRIPT>
+<SCRIPT>print_body();</SCRIPT><br>
+<SCRIPT>print_tail();</SCRIPT><br>
+</BODY>
+</HTML>

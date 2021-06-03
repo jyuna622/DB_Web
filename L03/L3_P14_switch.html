@@ -1,0 +1,51 @@
+<HTML>
+<HEAD>
+	<meta charset="utf-8">
+<SCRIPT>	
+	function scores(answer){
+		switch (answer){
+			case 10:
+				document.write("A");
+				break;
+			case 9: 
+				document.write("B");
+				break;
+			case 8:
+				document.write("B");
+				break;
+			case 7: 
+				document.write("C");
+				break;
+			case 6:
+				document.write("C");
+				break;
+			case 5: 
+				document.write("D");
+				break;
+			case 4:
+				document.write("D");
+				break;
+			case 3: 
+				document.write("F");
+				break;
+			case 2:
+				document.write("F");
+				break;
+			case 1: 
+				document.write("F");
+				break;
+			default :
+				document.write("Wrong number: Please input the numbers between 0 to 10");
+				break;
+		}
+	}
+</SCRIPT>
+</HEAD>
+<BODY>
+<SCRIPT>
+	answer = prompt("Please input your score (from 0 ~ 10): ", "");
+	answer = parseInt(answer);
+</SCRIPT>
+<SCRIPT> scores(answer);</SCRIPT>
+</BODY>
+</HTML>

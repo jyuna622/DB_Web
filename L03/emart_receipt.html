@@ -1,0 +1,138 @@
+<html>
+	<head>
+		<style>
+		   table{
+			  border-color : black;
+			  border-width : 1px;
+			  border-collapse: collapse;
+		   }
+		   td{
+			  border-color : black;
+			  border-width : 1px;
+			  border-collapse: collapse;
+		   }
+		</style>
+		<meta charset="utf-8">
+		<script>
+			var itemname = ["해피홈 SAFE365 핸드워시", "(G)LH원형유리화병 10호", "상투과자Emart기획", "더블링 나일론 깡 롤", 
+					"해피홈 SAFE 핸드워시",    "농심 신라면 120g*5", "(대)국내산삼겹살찌개", "오뚜기 진비빔면 156g", 
+					"풀무원 아몬드호두", "순 유기농 바나나(봉)", "피코크 탄두리 닭가슴살", "(달콤)순살닭강정(g)", 
+					"DZ주니어양말3족C_BK", "DZ주니어양말3족C_WH", "프리미엄생연어초밥", "피코크 들깨미역국500g", 
+					"남양 맛있는우유GT 저지방우유", "녹차원 흑당시럽 10입", "진라면소컵(매)65g*6", "케라시스 앰플 트리트먼트", 
+					"푸르밀 미숫가루우유", "자일로스갈색설탕500g", "CJ 비비고칩200G", "팔도 틈새라면 5봉", "흑원당 말차 밀크티", 
+					"포스트 그래놀라 크랜베리", "동원양반볶음김치기획", "동원훈제연어기획900g", "CJ 백설너비아니560g", 
+					"종가집 콩이가득두부300g", "코카콜라 제로 1.5L", "비비고왕교자490g*2"];
+			var price = [9900, 6900, 5980, 3300, 5500, 3380, 6610, 2750, 1000, 4980, 2480, 7920, 4980, 4980, 7130,
+					3980, 4480, 4980, 3210, 6950, 5960, 1990, 1980, 3980, 4480, 5780, 7980, 9800, 7980, 1000,
+					2800, 8480];
+			var num = [2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1];
+			var taxfree = [false, false, false, false, false, false, true, false, false, true,
+							false, false, false, false, false, false, true, false, false, false,
+							false, false, false, false, false, false, false, false, false, false, 
+							false, false];
+						
+			function getTaxfree(n) {
+			if (taxfree[n]==true) return "*";
+			else return " ";
+			}
+					
+			function getTimeStamp() {
+			  var d = new Date();
+			  var s =
+				leadingZeros(d.getFullYear(), 4) + '-' +
+				leadingZeros(d.getMonth() + 1, 2) + '-' +
+				leadingZeros(d.getDate(), 2) + ' ' +
+
+				leadingZeros(d.getHours(), 2) + ':' +
+				leadingZeros(d.getMinutes(), 2) + ':' +
+				leadingZeros(d.getSeconds(), 2);
+
+			  return s;
+			}
+
+			function leadingZeros(n, digits) {
+			  var zero = '';
+			  n = n.toString();
+
+			  if (n.length < digits) {
+				for (i = 0; i < digits - n.length; i++)
+				  zero += '0';
+			  }
+			  return zero + n;
+			}
+		
+			function numberWithCommas(x) {
+				return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			}	
+		</script>
+	</head>
+	<body>
+		<table>
+		<script>	
+			document.write("<tr>");
+			document.write("<td rowspan=3 colspan=2 align=center><H1><B> emart </B></H1></td>");
+			document.write("<td colspan=4><font size=1><B>이마트 죽전점 (031)888-1234</B></font></td>");	
+			document.write("</tr>");
+			document.write("<tr><td colspan=4><font size=1><B>208-86-50913 강희석</B></font></td></tr>");
+			document.write("<tr><td colspan=4><font size=1><B>용인 수지구 포은대로 552</B></font></td></tr>");
+			document.write("<tr><td colspan=6>영수증 미지참시 교환/환불 불가</td></tr>");
+			document.write("<tr><td colspan=6>정상상품에 한함, 30일 이내(신선 7일)</td></tr>");
+			document.write("<tr><td colspan=6>※일부 브랜드매장 제외(매장 고지물참조)</td></tr>");
+			document.write("<P>");
+			document.write("<tr>");
+			document.write("<td colspan=2>[구 매]"+getTimeStamp()+"</td>");
+			document.write("<td colspan=4 align=right>POS:0011-9861</td>");
+			document.write("</tr>");
+			document.write("<tr><td colspan=6>------------------------------------------------------------</td></tr>");
+			document.write("<tr>");
+			document.write("<td> </td>");
+			document.write("<td >상 품 명 </td>");
+			document.write("<td>단 가 </td>");
+			document.write("<td>수량 </td>");
+			document.write("<td>금 액 </td>");
+			document.write("</tr>");
+			let freePrice = 0;
+			let taxPrcie = 0;
+			let total = 0;
+			let netPrice = 0;
+			for (i = 0; i < itemname.length; i++) {
+				sum = price[i]*num[i];
+				if(taxfree[i] == false){
+					taxPrcie += price[i] * num[i];
+				} else {
+					freePrice += price[i] * num[i];
+				}
+				if ((i+1)%5==1){
+					document.write("<tr><td colspan=6>------------------------------------------------------------</td></tr>");
+				}
+				document.write("<tr>");
+				document.write("<td >"+(i+1)+getTaxfree(i)+"</td>");
+				document.write("<td >"+itemname[i]+ "</td>");
+				document.write("<td align=right>"+numberWithCommas(price[i])+" </td>");
+				document.write("<td align=right>"+num[i]+" </td>");
+				document.write("<td align=right>"+numberWithCommas(sum)+" </td>");
+				document.write("</tr>");
+				total += sum;
+			}
+			
+			let tax = Math.floor(taxPrcie/11) + 1;
+			netPrice = taxPrcie - tax;
+			
+			document.write("<tr><td colspan = 2 align=right>총 품목 수량</td>"+
+				"<td colspan = 3 align=right>" + itemname.length + "</td>");
+			document.write("<tr><td colspan = 2 align=right>(*)면 세 &nbsp;&nbsp;물 품</td>"+
+				"<td colspan = 3 align=right>" + numberWithCommas(freePrice) + "</td>");
+			document.write("<tr><td colspan = 2 align=right>과 세 &nbsp;&nbsp;물 품</td>"+
+				"<td colspan = 3 align=right>" + numberWithCommas(netPrice) + "</td>");
+			document.write("<tr><td colspan = 2 align=right>부&nbsp;&nbsp;&nbsp;&nbsp;가&nbsp;&nbsp;&nbsp;&nbsp;세</td>"+
+				"<td colspan = 3 align=right>" + tax + "</td>");
+			document.write("<tr><td colspan = 2 align=right>합&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;계</td>"+
+				"<td colspan = 3 align=right>" + numberWithCommas(total) + "</td>");
+			document.write("<tr><td colspan = 2 align=right>결&nbsp; 제&nbsp; 대&nbsp; 상&nbsp; 금&nbsp; 액</td>"+
+				"<td colspan = 3 align=right>" + itemname.length + "</td>");				
+			document.write("<tr><td colspan=6>------------------------------------------------------------</td></tr>");
+			
+		</script>
+		</table>
+	</body>
+</html>

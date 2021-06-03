@@ -1,0 +1,27 @@
+<HTML>
+<HEAD>
+	<meta charset="utf-8">
+<SCRIPT>	
+	function scores(answer){
+		if (answer>9){
+		document.write("A");
+		}else if (answer>7 && answer<=9){
+		document.write("B");
+		}else if (answer>5 && answer<=7){
+		document.write("C");
+		}else if (answer>3 && answer<=5){
+		document.write("D");
+		}else{
+		document.write("F");
+		}
+	}
+</SCRIPT>
+</HEAD>
+<BODY>
+<SCRIPT>
+	answer = prompt("Please input your score (from 0 ~ 10): ", "");
+	answer = parseInt(answer);
+</SCRIPT>
+<SCRIPT>scores(answer);</SCRIPT>
+</BODY>
+</HTML>

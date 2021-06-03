@@ -1,0 +1,24 @@
+<HTML>
+<HEAD>
+	<meta charset="utf-8">
+<SCRIPT>
+	var name = "Hello";
+	var protocol = location.protocol;
+	var hostName = location.hostname;
+	var port = location.port;
+
+	function call1(){
+		//window.location = "http://www.naver.com";
+		console.log(protocol); // http:
+		console.log(hostName); // includestdio.tistory.com
+		console.log(port); // 아무것도 리턴되지 않음
+		// port 번호가 80인 경우 아무것도 리턴하지 않습니다.
+	}
+	
+</SCRIPT>
+</HEAD>
+<BODY>
+<SCRIPT> call1(); </SCRIPT><br>
+Good...
+</BODY>
+</HTML>
